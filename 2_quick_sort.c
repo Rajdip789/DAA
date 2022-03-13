@@ -3,7 +3,7 @@
 
 int partition(int a[], int p, int r)
 {
-	int i,j,x, temp;
+	int i,j,x;
 	x=a[p];
 	i = p-1;
 	j = r+1;
@@ -17,15 +17,17 @@ int partition(int a[], int p, int r)
 		}while(a[j]>x);
 		
 		if(i<j){
-			temp = a[j];
-			a[j] = a[i];
-			a[i] = temp;
+			a[i]+=a[j];
+			a[j]=a[i]-a[j];
+			a[i]-=a[j];
 		}
 		else{
 			return j;
 		}
 	}	
 }
+
+
 
 void quicksort(int a[], int p, int r)
 {
