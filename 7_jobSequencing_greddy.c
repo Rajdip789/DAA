@@ -75,25 +75,20 @@ void merge_sort(struct job jobList[10], int low, int high){
 	return k;
 }*/
 
-int* greddy_JS(int n, struct job jobList[n], int* k){
+int* greddy_JS(int n, struct job jobList[], int* k){
 	int i,j,*result,maxDead=0;
 	
 	merge_sort(jobList,1,n);
 	
 	for(i=1;i<=n;i++){
-		printf("\n%d %d %d",jobList[i].profit,jobList[i].deadline,jobList[i].no);
-	}
-	
-	for(i=1;i<=n;i++){
 		if(maxDead<jobList[i].deadline)
 			maxDead=jobList[i].deadline;
 	}
-	result=(int*)malloc(maxDead*sizeof(int));
+	result=(int*)malloc((maxDead+1)*sizeof(int));
 	
 	for(i=1;i<=maxDead;i++)
 		result[i]=-1;
 		
-	printf("\nDeadline: %d\n",maxDead);
 	for(i=1;i<=n;i++){
 		for(j=jobList[i].deadline;j>0;j--){
 			if(result[j]==-1){
@@ -113,8 +108,8 @@ int main(){
 	printf("Enter the number of jobs: ");
 	scanf("%d",&n);
 	
-	struct job jobList[n];
-	J=(int*)malloc(n*sizeof(int));
+	struct job jobList[n+1];
+	J=(int*)malloc((n+1)*sizeof(int));
 
 	printf("Enter the profits and deadline:\n");
 	for(i=1;i<=n;i++){
@@ -128,23 +123,8 @@ int main(){
 	
 	J = greddy_JS(n,jobList,&k);
 	
-	printf("\nNo of items: %d\nThe items are: ",k);
+	printf("\Total no. of accepted items: %d\nThe job sequence is: ",k);
 	for(i=1;i<=k;i++)
 		printf("%d ",J[i]);
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

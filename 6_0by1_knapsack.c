@@ -31,17 +31,6 @@ int main(){
 	scanf("%d",&m);
 	printf("Enter the number of items: ");
 	scanf("%d",&n);
-	
-	/*p=(int*)malloc(n*sizeof(int));
-	w=(int*)malloc(n*sizeof(int));
-	dp=(int**)malloc(n*sizeof(int*));
-	for(i=0;i<n;i++)
-		dp[i]=(int*)malloc(m*sizeof(int));
-		
-	for(i=0;i<n;i++)
-		for(i=0;i<n;i++)*/
-			
-
 		
 	printf("Enter the profits and weights:\n");
 	for(i=0;i<n;i++){
