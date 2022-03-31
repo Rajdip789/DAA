@@ -1,12 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int mColoring(int m, int **adj){
-	
-}
-
 int main(){
-	int i,j,v,e,**adj,m,ans;
+	int i,j,v,e,**adj,ans;
 	printf("Enter the number of vertices and edges of the graph: ");
 	scanf("%d%d",&v,&e);
 	
@@ -25,16 +21,7 @@ int main(){
 		adj[x][y]=1;
 		adj[y][x]=1;
 	}
-	
-	printf("Enter the maximum number of color by which you want to color the graph: ");
-	scanf("%d",&m);
-	
-	ans = mColoring(m,adj);
-	
-	if(ans)
-		printf("Graph coloring is posssible.");
-	else
-		printf("Graph coloring is not posssible.");
+
 		
 	/*for(i=0;i<v;i++){
 		for(j=0;j<v;j++)
