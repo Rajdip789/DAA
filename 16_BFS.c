@@ -1,57 +1,66 @@
-//Time complexity will be O(N+E) and Space complexity will be O(N+E) + O(N) + O(N)                    
-#include<bits/stdc++.h>
-using namespace std;
+//Implement a program in C to find the BFS traversal sequence from a given graph.
+#include<stdio.h>
+#define True 1
+#define False 0
 
-class Solution{
-	public:
-		vector<int> bfsOfGraph(int v, vector<int> adj[]){
-			vector<int> bfs;
-			vector<int> vis(v+1,0);
-			
-			for(int i=1;i<=v;i++){
-				if(!vis[i]){
-					
-					//BFS Algo start
-					queue<int> q;
-					q.push(i);
-					vis[i] = 1;
-					while(!q.empty()){
-						int node = q.front();
-						q.pop();
-						bfs.push_back(node);
-						
-						for(auto it : adj[node]){
-							if(!vis[it]){
-								q.push(it);
-								vis[it] = 1;
-							}
-						}
-					}
-				}
-			}
-			
-			return bfs;
-		}
-};
+int front, rear;
 
-int main(){
-	int n,m;
-	cin >> n >> m;
-	
-	//vector<pair<int,int>> adj[n+1];    //add this for weighted graph
-	vector<int> adj[n+1];
-	for(int i =0;i<m;i++){
-		int u,v;
-		cin >> u >> v;
-		adj[u].push_back(v);
-		adj[v].push_back(u); //ommit this line in case of a directed graph
-	}	
-
-	Solution s1;
-	for(int x : s1.bfsOfGraph(n,adj))
-        cout<<x<<" ";
-        
-	return 0;
+void EmptyQueue(int Q[20]) {
+	front=rear=0;
 }
 
+void Insert(int Q[20],int item) {
+	Q[rear]=item;
+	rear++;	
+}
 
+int Empty(int Q[20]) {
+	if(front==rear)
+		return True;
+	else
+		return False;
+}
+
+int Delete(int Q[20]) {
+	int item;
+	item=Q[front];
+	front++;
+	return item;	
+}
+
+void Print(int n) {
+	printf("%d\t",n);
+}
+
+void BFS(int G[20][20], int s, int n) {	// s = Starting vertex 
+	int i, v, visited[20], Q[20], w,u;
+	for(v=1;v<=n;v++)
+		visited[v] = False;
+	EmptyQueue(Q); 
+	Insert(Q,s); 
+	while (!Empty(Q)) {
+		u = Delete(Q); 
+		if (visited[u]==False) {
+			visited[u] = True; 
+			Print(u); 
+			for (w=1;w<=n;w++)
+				if (G[u][w]!=0 && (visited[w] == False))
+					Insert(Q, w);
+		} 
+	}
+}
+
+int main() {
+	int s, G[20][20],n,i,j;
+	printf("Enter number of vertices and starting vertex\n");
+	scanf("%d%d",&n,&s);
+	printf("Enter the adjacency matrix\n");
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+			scanf("%d",&G[i][j]);
+	
+	printf("BFS traversal is:\n");
+	BFS(G,s,n);
+	printf("\n");
+	return 0;
+}

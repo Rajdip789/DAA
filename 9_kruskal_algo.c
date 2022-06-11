@@ -98,10 +98,10 @@ int main(){
 	
 	ans = Greedy_kruskal(Edgelist,E,V,t);
 	
-	printf("Edgelist after sorting: ");
+	/*printf("Edgelist after sorting: ");
 	for(i=0;i<E;i++){
 		printf("\n%d %d %d",Edgelist[i].vertex1,Edgelist[i].vertex2,Edgelist[i].cost);
-	}
+	}*/
 	
 	if(ans)
 		printf("\n\nMinimum cost for spanning tree is: %d",ans);
