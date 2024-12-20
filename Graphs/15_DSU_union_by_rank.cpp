@@ -1,10 +1,10 @@
+/**
+ *	TC - O(4α) / SC - O(N)
+**/
+
 #include <iostream>
 #include <vector>
 using namespace std;
-
-/***
-	TC - O(4a) / SC - O(N)
-***/
 
 class DisjointSet {
     vector<int> parent, rank;
@@ -33,7 +33,7 @@ class DisjointSet {
 	        if(rank[uparentU] > rank[uparentV]) {
 	            parent[uparentV] = uparentU;
 	
-	        } else if(rank[uparentU] < rank[uparentV]){
+	        } else if(rank[uparentU] < rank[uparentV]) {
 	            parent[uparentU] = uparentV;
 	
 	        } else {

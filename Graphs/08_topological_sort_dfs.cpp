@@ -1,14 +1,23 @@
+/**
+ *	Topological sort : Linear indexing of vertices such that if there is 
+ *	an edge u -> v, u appers before v in that ordering.
+ *
+ *	TC - O(V + E) / SC - O(V)
+**/
+
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution{
+class Solution {
 	public:
 		void dfs(int node, stack<int> &st, vector<int> &vis, vector<int> adj[]) {
 			vis[node] = 1;
+
 			for(auto it: adj[node]) {
 				if(!vis[it])
 					dfs(it, st, vis, adj);
 			}
+
 			st.push(node);
 		}
 		
@@ -18,18 +27,18 @@ class Solution{
 			stack<int> st;
 			
 			for(int i = 0; i < v; i++) {
-				if(!vis[i]){
+				if(!vis[i]) {
 					dfs(i, st, vis, adj);
 				}
 			}
 			
-			while(!st.empty()){ 
+			while(!st.empty()) { 
 				ans.push_back(st.top());
 				st.pop();
+
 			}
 			return ans;	
 		}
-		
 };
 
 int main() {
@@ -37,17 +46,17 @@ int main() {
 	cout << "Enter the no of vertex and edges: ";
 	cin >> n >> m;
 	
-	//vector<pair<int,int>> adj[n+1];    //add this for weighted graph
 	vector<int> adj[n+1];
-	cout<<"Enter the edge details:"<<endl;				//------NOTE THE GRAPH IS 0 INDEXED------
-	for(int i = 0; i < m; i++){
+	
+	cout << "Enter the edge details: " << endl;
+	for(int i = 0; i < m; i++) {
 		int u, v;
 		cin >> u >> v;
 		adj[u].push_back(v);
 	}	
 
 	Solution s1;
-	for(auto it: s1.topoSort(n,adj))
+	for(auto it: s1.topoSort(n, adj))	// topological ordering
 		cout << it << " ";
         
 	return 0;
